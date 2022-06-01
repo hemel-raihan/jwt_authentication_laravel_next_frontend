@@ -14,3 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.form-signin{
+  width: 20%;
+  margin-left: 30%;
+}
