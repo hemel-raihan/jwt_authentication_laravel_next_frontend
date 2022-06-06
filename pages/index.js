@@ -14,7 +14,7 @@ export default function Home() {
       async () => {
         try{
           const response = await fetch('https://dry-fortress-31925.herokuapp.com/api/user',{
-            credentials: 'include'
+            //credentials: 'include'
           });
           const content = await response.json();
           setMessage(`Hi ${content.name}`);
