@@ -54,7 +54,7 @@ const Login = () => {
     return ( 
         <Layout>
         <form onSubmit={submit}>
-          <h1 className='h3 mb-3 fw-normal'>Please Sign in</h1>
+          <h1 className='h3 mb-3 fw-normal'>Please Sign in to my app</h1>
           <input type="email" className="form-control" onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
           <input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
 
