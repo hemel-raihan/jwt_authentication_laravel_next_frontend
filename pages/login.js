@@ -10,26 +10,26 @@ const Login = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    useEffect(() =>{
-        (
-          async () => {
-            try{
-              const response = await fetch('http://localhost:8000/api/user',{
-                credentials: 'include'
-              });
-              const content = await response.json();
-              //setAuth(true);
-              if(content)
-              {
-                await router.push('/');
-              }
-            }catch(e){
-              console.log('asd');
-            }
+    // useEffect(() =>{
+    //     (
+    //       async () => {
+    //         try{
+    //           const response = await fetch('http://localhost:8000/api/user',{
+    //             credentials: 'include'
+    //           });
+    //           const content = await response.json();
+    //           //setAuth(true);
+    //           if(content)
+    //           {
+    //             await router.push('/');
+    //           }
+    //         }catch(e){
+    //           console.log('asd');
+    //         }
             
-          }
-        )();
-      });
+    //       }
+    //     )();
+    //   });
 
     
     const submit = async (e) => {
