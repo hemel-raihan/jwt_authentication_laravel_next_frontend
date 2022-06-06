@@ -13,7 +13,7 @@ export default function Home() {
     (
       async () => {
         try{
-          const response = await fetch('http://localhost:8000/api/user',{
+          const response = await fetch('https://dry-fortress-31925.herokuapp.com/api/user',{
             credentials: 'include'
           });
           const content = await response.json();

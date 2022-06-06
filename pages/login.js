@@ -35,7 +35,7 @@ const Login = () => {
     const submit = async (e) => {
         e.preventDefault();
 
-        await fetch('http://localhost:8000/api/login',{
+        await fetch('https://dry-fortress-31925.herokuapp.com/api/login',{
             method: 'POST',
             headers: {'content-type': 'application/json'},
             credentials: 'include',
