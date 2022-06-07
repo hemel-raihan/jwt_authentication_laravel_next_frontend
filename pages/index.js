@@ -3,31 +3,51 @@ import { useEffect } from 'react'
 import { useState } from 'react';
 import Layout from '../layouts/Layout'
 import { useRouter } from "next/router";
+import AuthUser from './AuthUser';
 
 export default function Home() {
   const router = useRouter();
   const [auth, setAuth] = useState(false);
   const [message, setMessage] = useState('');
-
+  const {getToken} = AuthUser();
   useEffect(() =>{
     (
       async () => {
+        const tokenString = localStorage.getItem('token');
+      if(!tokenString)
+      {
+        router.push('login');
+      }
+      else
+      {
         try{
-          const response = await fetch('https://dry-fortress-31925.herokuapp.com/api/user',{
+          const response = await fetch('https://dry-fortress-31925.herokuapp.com/api/me',{
+            method: "POST",
+            body: {token: tokenString}
             //credentials: 'include'
-          });
-          const content = await response.json();
-          setMessage(`Hi ${content.name}`);
-          setAuth(true);
+          })
+          .then(response => response.json())
+                .then(data => {
+                    if (!data) {
+                        setMessage('Someting went wrong!');
+                        //return;
+                    }
+                    setMessage(`Hi ${data.data.name}`);
+                });
+          // const content = await response.json();
+          // setMessage(`Hi ${content.name}`);
+          // setAuth(true);
         }catch(e){
           //setMessage('You are not logged in');
           await router.push('login');
           setAuth(false);
         }
+      }
+        
         
       }
     )();
-  });
+  },[]);
 
   return (
   <>

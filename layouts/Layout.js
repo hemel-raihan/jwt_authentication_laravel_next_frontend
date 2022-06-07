@@ -12,11 +12,12 @@ function Layout( props ) {
   const router = useRouter();
 
   const logout = async() =>{
-      await fetch('http://localhost:8000/api/logout',{
+      await fetch('https://dry-fortress-31925.herokuapp.com/api/logout',{
           method: 'POST',
           headers: {'content-type': 'application/json'},
-          credentials: 'include'
+         // credentials: 'include'
       })
+      localStorage.removeItem('token');
 
       await router.push('/login');
   }
@@ -28,6 +29,7 @@ function Layout( props ) {
               <Link href="/"><a className="nav-item nav-link active" >Home</a></Link>
               <Link href="/login"><a className="nav-item nav-link" >Login</a></Link>
               <Link href="/register"><a className="nav-item nav-link" >Registration</a></Link>
+              <a className="nav-item nav-link" onClick={logout} href="#">Logout</a>
             </div>
     )
   }
