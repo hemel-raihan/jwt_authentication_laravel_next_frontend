@@ -33,7 +33,7 @@ const AuthUser = () => {
     }
 
     const http = axios.create({
-        baseURL: "https://dry-fortress-31925.herokuapp.com/",
+        baseURL: "http://localhost:8000/api",
         headers: {
             "Content-Type" : "application/json"
         }
