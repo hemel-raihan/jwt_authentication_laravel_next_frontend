@@ -21,7 +21,7 @@ export default function Home() {
       else
       {
         try{
-          const response = await fetch('https://dry-fortress-31925.herokuapp.com/api/me',{
+          const response = await fetch('http://localhost:8000/api/me',{
             method: "POST",
             body: {token: tokenString}
             //credentials: 'include'

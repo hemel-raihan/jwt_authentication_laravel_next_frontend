@@ -12,24 +12,22 @@ const Login = () => {
     const router = useRouter();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [tkn, setTkn] = useState();
+    //const [tkn, setTkn] = useState();
     
-    //const [item, setItem] = useState();
+    
 
-    // useEffect = () =>{
-        useEffect(()=>{
-            const tokenString = localStorage.getItem('token');
-            setTkn(tokenString)
-        })
-      if(tkn)
-      {
-        router.push('/');
-      }
+      //   useEffect(()=>{
+      //       const tokenString = localStorage.getItem('token');
+      //       setTkn(tokenString)
+      //   })
+      // if(tkn)
+      // {
+      //   router.push('/');
+      // }
 
     const submit = () =>{
         http.post('/login',{email,password}).then((res)=>{
-            const test =  localStorage.setItem('token', JSON.stringify(res.data.access_token));
-            setToken(test);
+            setToken(res.data.user,res.data.access_token);
         })
       }
     // }

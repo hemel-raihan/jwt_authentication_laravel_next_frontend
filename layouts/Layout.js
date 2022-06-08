@@ -4,22 +4,19 @@ import React from "react";
 import Nav from "./Nav";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import AuthUser from "../pages/AuthUser";
 
 function Layout( props ) {
 
   let menu;
 
   const router = useRouter();
+  const {token,logout} = AuthUser();
 
-  const logout = async() =>{
-      await fetch('https://dry-fortress-31925.herokuapp.com/api/logout',{
-          method: 'POST',
-          headers: {'content-type': 'application/json'},
-         // credentials: 'include'
-      })
-      localStorage.removeItem('token');
-
-      await router.push('/login');
+  const logoutUser = () =>{
+    if(token !== undefined){
+      logout();
+    }
   }
 
   if(!props.auth)
@@ -29,7 +26,7 @@ function Layout( props ) {
               <Link href="/"><a className="nav-item nav-link active" >Home</a></Link>
               <Link href="/login"><a className="nav-item nav-link" >Login</a></Link>
               <Link href="/register"><a className="nav-item nav-link" >Registration</a></Link>
-              <a className="nav-item nav-link" onClick={logout} href="#">Logout</a>
+              <a className="nav-item nav-link" onClick={logoutUser} href="#">Logout</a>
             </div>
     )
   }
@@ -37,7 +34,7 @@ function Layout( props ) {
   {
     menu = (
             <div className="navbar-nav">
-              <a className="nav-item nav-link" onClick={logout} href="#">Logout</a>
+              <a className="nav-item nav-link" onClick={logoutUser} href="#">Logout</a>
             </div>
     )
   }
