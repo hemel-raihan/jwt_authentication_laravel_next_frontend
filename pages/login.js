@@ -7,7 +7,7 @@ import AuthUser from "./AuthUser";
 
 const Login = () => {
 
-    const {http, setToken} = AuthUser();
+    const {http, setToken, getToken} = AuthUser();
 
     const router = useRouter();
     const [email, setEmail] = useState();
@@ -16,14 +16,13 @@ const Login = () => {
     
     
 
-      //   useEffect(()=>{
-      //       const tokenString = localStorage.getItem('token');
-      //       setTkn(tokenString)
-      //   })
-      // if(tkn)
-      // {
-      //   router.push('/');
-      // }
+     useEffect(() =>{
+        if(getToken())
+        {
+            router.push('/dashboard');
+        }
+  },[]);
+
 
     const submit = () =>{
         http.post('/login',{email,password}).then((res)=>{

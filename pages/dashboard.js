@@ -1,16 +1,29 @@
 import { useEffect, useState } from "react";
 import Layout from "../layouts/Layout";
 import AuthUser from "./AuthUser";
+import { useRouter } from 'next/router';
 
 export default function Dashboard()
 {
+    const router = useRouter();
     const [auth, setAuth] = useState(false);
-    const {http} = AuthUser();
+    const {http,getToken} = AuthUser();
     const [userDetails,setUserdetails] = useState();
 
+        
+
     useEffect(() =>{
+
+        if(!getToken())
+        {
+            router.push('/login');
+        }
+        
         fetchUserDetail();
+        
     },[]);
+
+        
 
     const fetchUserDetail = () =>{
         http.post('/me').then((res)=>{

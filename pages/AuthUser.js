@@ -91,7 +91,6 @@ export default function AuthUser() {
         router.push('/dashboard');
 
         }
-        console.log(user,token);
     }
 
     function logout(){
@@ -110,6 +109,7 @@ export default function AuthUser() {
     return {
         http,
         setToken: saveToken,
+        getToken,
         logout,
         token,
         user,
